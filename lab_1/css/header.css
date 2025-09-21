@@ -73,3 +73,52 @@ header {
     padding: 8px 20px;
 
   }
+
+    /* ==== Хедер адаптація ==== */
+  .hamburger {
+    display: none; /* прихований по замовчуванню */
+    font-size: 26px;
+    cursor: pointer;
+    color: #091133;
+  }
+
+  /* Меню у звичайному стані */
+  header nav ul {
+    display: flex;
+    gap: 20px;
+  }
+
+  /* На малих екранах */
+  @media (max-width: 360px) {
+    .logo{
+      margin-left: 0px;
+    }
+    
+    
+    .hamburger {
+      display: block;
+      margin-right: -100px; /* показати гамбургер */
+    }
+
+  header nav ul {
+    display: none; /* сховати меню */
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+  }
+
+  header nav ul.show {
+    display: flex; /* показати при кліку */
+  }
+
+  header {
+    position: relative;
+    padding: 10px 15px;
+  }
+}

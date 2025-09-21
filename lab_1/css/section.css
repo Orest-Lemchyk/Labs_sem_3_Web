@@ -119,24 +119,29 @@
     }
   }
 
-  /* === Адаптація для iPhone 5/5s/SE (320px) === */
-  @media (max-width: 360px) {
-    .cta-image{
-      padding: 10px 0;
-    }
-  /* Ховаємо картинки у секціях */
+  @media (max-width: 700px) {
+  .cta-image{
+    padding: 10px 0;
+    flex-direction: column;
+    align-items: center;
+  }
   .cta-image-right {
-    display: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;   
+  }
+  .cta-image-right img {
+    max-width: 90%;
+    height: auto;
   }
 
-  /* Контент на всю ширину */
   .cta-content {
     flex: 1 1 100%;
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* Текст менший, щоб вміщався */
   .cta-content h1,
   .cta-content h2 {
     font-size: 22px;
@@ -149,7 +154,6 @@
     margin-bottom: 20px;
   }
 
-  /* Features стають вертикальними */
   .features {
     flex-direction: column;
     gap: 15px;
@@ -159,13 +163,17 @@
     max-width: 100%;
   }
 
-  /* Pricing картки одна під одною */
   .pricing {
     flex-direction: column;
     gap: 40px;
-    padding: 5px;
+    padding: 0.5%;
   }
-
+  .price{
+    margin-left: 5px;
+  }
+  .feature{
+    margin-left: 5px;
+  }
   .pricing-card {
     max-width: 100%;
     text-align: center;

@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Кнопки */
+  .btn-learn {
+    background-color: #111B47;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color:#ffffff;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 8px 20px;
+  }
+  
+  .btn-buy {
+    background-color: #FFD166;
+    color: black;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 8px 20px;
+  }
+  

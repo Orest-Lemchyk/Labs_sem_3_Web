@@ -9,10 +9,16 @@
 <body>
   <div class="container">
     <h1>Shoes list</h1>
-    <input type="text" id="searchInput" placeholder="Пошук..." onkeyup="filterTable()">
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+    <div class="actions">
+      <a href="create.html"><button>Додати нове взуття</button></a>
+      <button id="editBtn" disabled>Редагувати вибране</button>
+      <button id="deleteBtn" disabled>Видалити вибране</button>
+    </div>
     <table id="shoesTable">
       <thead>
         <tr>
+          <th>Choise</th>
           <th onclick="sortTable(0)">Producer</th>
           <th onclick="sortTable(1)">Prise</th>
           <th onclick="sortTable(2)">Size</th>

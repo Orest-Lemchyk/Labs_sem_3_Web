@@ -1,15 +1,43 @@
+let selectedIndex = null;
+
 function displayShoes() {
   const tableBody = document.querySelector("#shoesTable tbody");
   tableBody.innerHTML = "";
 
-  shoesList.forEach(shoe => {
+  shoesList.forEach((shoe, index) => {
     const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${shoe.producer}</td>
-      <td>${shoe.price}</td>
-      <td>${shoe.size}</td>
-      <td>${shoe.color}</td>
-    `;
+
+    // Перший стовпець - radio для вибору
+    const selectTd = document.createElement("td");
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "selectedShoe";
+    radio.value = index;
+    radio.addEventListener("change", () => {
+      selectedIndex = index;
+      document.getElementById("editBtn").disabled = false;
+      document.getElementById("deleteBtn").disabled = false;
+    });
+    selectTd.appendChild(radio);
+    row.appendChild(selectTd);
+
+    // Інші дані
+    const producerTd = document.createElement("td");
+    producerTd.textContent = shoe.producer;
+    row.appendChild(producerTd);
+
+    const priceTd = document.createElement("td");
+    priceTd.textContent = shoe.price;
+    row.appendChild(priceTd);
+
+    const sizeTd = document.createElement("td");
+    sizeTd.textContent = shoe.size;
+    row.appendChild(sizeTd);
+
+    const colorTd = document.createElement("td");
+    colorTd.textContent = shoe.color;
+    row.appendChild(colorTd);
+
     tableBody.appendChild(row);
   });
 
@@ -55,7 +83,7 @@ function calculateTotal() {
 
   rows.forEach(row => {
     if (row.style.display !== "none") {
-      const priceCell = row.cells[1].textContent.trim();
+      const priceCell = row.cells[2].textContent.trim();
       total += parseFloat(priceCell) || 0;
     }
   });
@@ -67,4 +95,23 @@ window.addEventListener("DOMContentLoaded", () => {
   displayShoes();
 
   document.getElementById("searchInput").addEventListener("input", filterTable);
+});
+
+document.getElementById("editBtn").addEventListener("click", () => {
+  if (selectedIndex !== null) {
+    localStorage.setItem("editIndex", selectedIndex);
+    window.location.href = "edit.html";
+  }
+});
+
+document.getElementById("deleteBtn").addEventListener("click", () => {
+  if (selectedIndex !== null) {
+    if (confirm("Ви впевнені, що хочете видалити цей елемент?")) {
+      shoesList.splice(selectedIndex, 1);
+      displayShoes();
+      selectedIndex = null;
+      document.getElementById("editBtn").disabled = true;
+      document.getElementById("deleteBtn").disabled = true;
+    }
+  }
 });

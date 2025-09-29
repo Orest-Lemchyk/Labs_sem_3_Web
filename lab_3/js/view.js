@@ -7,7 +7,6 @@ function displayShoes() {
   shoesList.forEach((shoe, index) => {
     const row = document.createElement("tr");
 
-    // Перший стовпець - radio для вибору
     const selectTd = document.createElement("td");
     const radio = document.createElement("input");
     radio.type = "radio";
@@ -21,7 +20,6 @@ function displayShoes() {
     selectTd.appendChild(radio);
     row.appendChild(selectTd);
 
-    // Інші дані
     const producerTd = document.createElement("td");
     producerTd.textContent = shoe.producer;
     row.appendChild(producerTd);
@@ -104,14 +102,32 @@ document.getElementById("editBtn").addEventListener("click", () => {
   }
 });
 
-document.getElementById("deleteBtn").addEventListener("click", () => {
+const deleteBtn = document.getElementById("deleteBtn");
+const confirmModal = document.getElementById("confirmModal");
+const confirmYes = document.getElementById("confirmYes");
+const confirmNo = document.getElementById("confirmNo");
+
+deleteBtn.addEventListener("click", () => {
   if (selectedIndex !== null) {
-    if (confirm("Ви впевнені, що хочете видалити цей елемент?")) {
-      shoesList.splice(selectedIndex, 1);
-      displayShoes();
-      selectedIndex = null;
-      document.getElementById("editBtn").disabled = true;
-      document.getElementById("deleteBtn").disabled = true;
-    }
+    confirmModal.style.display = "block";
   }
 });
+
+confirmYes.onclick = () => {
+  shoesList.splice(selectedIndex, 1);
+  displayShoes();
+  selectedIndex = null;
+  document.getElementById("editBtn").disabled = true;
+  document.getElementById("deleteBtn").disabled = true;
+  confirmModal.style.display = "none";
+};
+
+confirmNo.onclick = () => {
+  confirmModal.style.display = "none";
+};
+
+window.onclick = (event) => {
+  if (event.target === confirmModal) {
+    confirmModal.style.display = "none";
+  }
+};

@@ -1,33 +1,20 @@
-class shose {
-    constructor(producer, price, size, color) {
-      this.producer = producer;
-      this.price = price;
-      this.size = size;
-      this.color = color;
-    }
-  
-    info() {
-      return `${this.producer}, size ${this.size}, color ${this.color}, price: ${this.price} grn`;
-    }
-  }
 
-  const shoesList = [
-    new shose("Nike", 2500, 42, "black"),
-    new shose("Adidas", 2200, 41, "white"),
-    new shose("Puma", 1800, 43, "green"),
-    new shose("Reebok", 2000, 44, "blue"),
-    new shose("Under Armour", 2700, 45, "red"),
-    new shose("New Balance", 2300, 42, "black"),
-    new shose("Converse", 1600, 40, "white"),
-    new shose("Vans", 1900, 41, "gray"),
-    new shose("Asics", 2100, 43, "blue"),
-    new shose("Fila", 1700, 42, "red"),
-    new shose("Skechers", 2400, 44, "black"),
-    new shose("Mizuno", 2600, 45, "green"),
-    new shose("Brooks", 2500, 42, "white")
+
+if (!localStorage.getItem("shoesList")) {
+  shoesList = [
+    { producer: "Nike", price: 2500, size: 42, color: "black" },
+    { producer: "Adidas", price: 2200, size: 41, color: "white" },
+    { producer: "Puma", price: 1800, size: 43, color: "green" },
+    { producer: "Reebok", price: 2000, size: 44, color: "blue" },
+    { producer: "Under Armour", price: 2700, size: 45, color: "red" },
+    { producer: "New Balance", price: 2300, size: 42, color: "black" },
+    { producer: "Converse", price: 1600, size: 40, color: "white" },
+    { producer: "Vans", price: 1900, size: 41, color: "gray" },
+    { producer: "Asics", price: 2100, size: 43, color: "blue" },
+    { producer: "Fila", price: 1700, size: 42, color: "red" },
+    { producer: "Skechers", price: 2400, size: 44, color: "black" },
+    { producer: "Mizuno", price: 2600, size: 45, color: "green" },
+    { producer: "Brooks", price: 2500, size: 42, color: "white" }
   ];
-  
-
-  shoesList.forEach(shoe => {
-    console.log(shoe.info());
-  });
+  localStorage.setItem("shoesList", JSON.stringify(shoesList));
+}

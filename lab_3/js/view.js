@@ -1,5 +1,7 @@
 let selectedIndex = null;
 
+let shoesList = JSON.parse(localStorage.getItem("shoesList")) || [];
+
 function displayShoes() {
   const tableBody = document.querySelector("#shoesTable tbody");
   tableBody.innerHTML = "";
@@ -45,7 +47,7 @@ function displayShoes() {
 function sortTable(columnIndex) {
   const tableBody = document.querySelector("#shoesTable tbody");
   const rows = Array.from(tableBody.rows);
-  const isNumeric = columnIndex === 1 || columnIndex === 2;
+  const isNumeric = columnIndex === 2;
 
   rows.sort((a, b) => {
     const cellA = a.cells[columnIndex].textContent.trim();
@@ -58,7 +60,6 @@ function sortTable(columnIndex) {
   });
 
   rows.forEach(row => tableBody.appendChild(row));
-
   calculateTotal();
 }
 
@@ -91,7 +92,6 @@ function calculateTotal() {
 
 window.addEventListener("DOMContentLoaded", () => {
   displayShoes();
-
   document.getElementById("searchInput").addEventListener("input", filterTable);
 });
 
@@ -115,6 +115,7 @@ deleteBtn.addEventListener("click", () => {
 
 confirmYes.onclick = () => {
   shoesList.splice(selectedIndex, 1);
+  localStorage.setItem("shoesList", JSON.stringify(shoesList));
   displayShoes();
   selectedIndex = null;
   document.getElementById("editBtn").disabled = true;

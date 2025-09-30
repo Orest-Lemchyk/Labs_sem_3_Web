@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h1>Shoes list</h1>
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+    <input type="text" id="searchInput" placeholder="Search...">
     <div class="actions">
       <a href="create.html"><button>Додати нове взуття</button></a>
       <button id="editBtn" disabled>Редагувати вибране</button>
@@ -19,10 +19,10 @@
       <thead>
         <tr>
           <th>Choise</th>
-          <th onclick="sortTable(0)">Producer</th>
-          <th onclick="sortTable(1)">Prise</th>
-          <th onclick="sortTable(2)">Size</th>
-          <th onclick="sortTable(3)">Color</th>
+          <th onclick="sortTable(1)">Producer</th>
+          <th onclick="sortTable(2)">Price</th>
+          <th onclick="sortTable(3)">Size</th>
+          <th onclick="sortTable(4)">Color</th>
         </tr>
       </thead>
       <tbody>

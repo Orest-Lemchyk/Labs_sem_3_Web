@@ -1,16 +1,15 @@
+let shoesList = JSON.parse(localStorage.getItem("shoesList")) || [];
+
 const editForm = document.getElementById("editForm");
 const editIndex = localStorage.getItem("editIndex");
 
-if(editIndex !== null && shoesList[editIndex]) {
-  const shoe = shoesList[editIndex];
-
-  editForm.producer.value = shoe.producer;
-  editForm.price.value = shoe.price;
-  editForm.size.value = shoe.size;
-  editForm.color.value = shoe.color;
+if (editIndex !== null && shoesList[editIndex]) {
+  Object.entries(shoesList[editIndex]).forEach(
+    ([key, value]) => (editForm[key].value = value)
+  );
 }
 
-editForm.addEventListener("submit", function(e) {
+editForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const producer = editForm.producer.value.trim();
@@ -20,30 +19,25 @@ editForm.addEventListener("submit", function(e) {
 
   const textPattern = /^[A-Za-z\s]+$/;
 
-    if(!producer || !textPattern.test(producer) || !price || !size || !color || !textPattern.test(color)) {
-        showModal("Please fill in all fields correctly!");
-        return;
-    }
+  if (!producer || !textPattern.test(producer) || !price || !size || !color || !textPattern.test(color)) {
+    return showModal("Please fill in all fields correctly!");
+  }
 
-    if(price < 100 || price > 10000  ) {
-        showModal("price from 100 to 10,000");
-        return;
-    }
-    
-    if( size < 30 || size > 50 ) {
-        showModal("size from 30 to 50");
-        return;
-    }
+  if (price < 100 || price > 10000) {
+    showModal("Price from 100 to 10,000");
+    return;
+  }
 
-//   shoesList[editIndex].producer = producer;
-//   shoesList[editIndex].price = price;
-//   shoesList[editIndex].size = size;
-//   shoesList[editIndex].color = color;
+  if (size < 30 || size > 50) {
+    showModal("Size from 30 to 50");
+    return;
+  }
+  Object.assign(shoesList[editIndex], { producer, price, size, color });
 
-//   localStorage.setItem("shoesList", JSON.stringify(shoesList));
+  localStorage.setItem("shoesList", JSON.stringify(shoesList));
 
   showModal("Shoes updated successfully!");
-  setTimeout(() => window.location.href = "index.html", 1500);
+  setTimeout(() => (window.location.href = "index.html"), 1500);
 });
 
 function showModal(message) {
@@ -54,11 +48,5 @@ function showModal(message) {
 
   document.getElementById("closeModal").onclick = () => {
     modal.style.display = "none";
-  };
-
-  window.onclick = (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
   };
 }

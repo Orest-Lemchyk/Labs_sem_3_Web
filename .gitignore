@@ -89,3 +89,45 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Віртуальне середовище
+venv/
+.env/
+*.env
+
+# Кеші Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite база даних (якщо не хочеш її пушити)
+db.sqlite3
+
+# Файли налаштувань середовища
+*.log
+*.pot
+*.pyc
+
+# Кеш Django
+*.mo
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Папка з медіафайлами
+media/
+staticfiles/
+
+# IDE/Editor файли
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Системні файли
+.DS_Store
+Thumbs.db

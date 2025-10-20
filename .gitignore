@@ -131,3 +131,6 @@ staticfiles/
 # Системні файли
 .DS_Store
 Thumbs.db
+
+
+.env

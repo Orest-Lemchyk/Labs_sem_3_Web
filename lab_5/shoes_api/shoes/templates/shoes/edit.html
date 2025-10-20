@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if form.instance.pk %}Edit Shoe{% else %}Add Shoe{% endif %}</title>
+  <link rel="stylesheet" href="{% static 'shoes/css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>{% if form.instance.pk %}Edit Shoe{% else %}Add Shoe{% endif %}</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">{% if form.instance.pk %}Save{% else %}Add{% endif %}</button>
+      <a href="{% url 'index' %}"><button type="button">Cancel</button></a>
+    </form>
+  </div>
+</body>
+</html>

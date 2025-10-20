@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoes list</title>
+  <link rel="stylesheet" href="{% static 'shoes/css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Shoes list</h1>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <div class="actions">
+      <a href="{% url 'create' %}"><button>Додати нове взуття</button></a>
+    </div>
+    <table id="shoesTable">
+      <thead>
+        <tr>
+          <th>Producer</th>
+          <th onclick="sortTable(1)">Price</th>
+          <th onclick="sortTable(2)">Size</th>
+          <th>Color</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for shoe in shoes %}
+        <tr>
+          <td>{{ shoe.producer }}</td>
+          <td>{{ shoe.price }}</td>
+          <td>{{ shoe.size }}</td>
+          <td>{{ shoe.color }}</td>
+          <td>
+            <a href="{% url 'edit' shoe.id %}"><button>Редагувати</button></a>
+            <form action="{% url 'delete' shoe.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">Немає записів</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p id="totalPrice">Total price: 0 grn</p>
+  </div>
+
+  <script src="{% static 'shoes/js/shoes_list.js' %}"></script>
+</body>
+</html>

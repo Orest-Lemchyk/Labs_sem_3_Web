@@ -3,7 +3,6 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoes list</title>
   <link rel="stylesheet" href="{% static 'shoes/css/style.css' %}">
 </head>
@@ -11,44 +10,88 @@
   <div class="container">
     <h1>Shoes list</h1>
     <input type="text" id="searchInput" placeholder="Search...">
-    <div class="actions">
-      <a href="{% url 'create' %}"><button>Додати нове взуття</button></a>
-    </div>
+    <select id="sortSelect">
+      <option value="">Sort by</option>
+      <option value="producer">Producer</option>
+      <option value="price">Price</option>
+      <option value="size">Size</option>
+      <option value="color">Color</option>
+    </select>
+
+    <a href="{% url 'shoe_create' %}"><button>+ Add</button></a>
+
     <table id="shoesTable">
       <thead>
         <tr>
-          <th>Producer</th>
-          <th onclick="sortTable(1)">Price</th>
-          <th onclick="sortTable(2)">Size</th>
-          <th>Color</th>
-          <th>Actions</th>
+          <th>Producer</th><th>Price</th><th>Size</th><th>Color</th><th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="shoesBody">
         {% for shoe in shoes %}
-        <tr>
+        <tr data-id="{{ shoe.id }}">
           <td>{{ shoe.producer }}</td>
           <td>{{ shoe.price }}</td>
           <td>{{ shoe.size }}</td>
           <td>{{ shoe.color }}</td>
           <td>
-            <a href="{% url 'edit' shoe.id %}"><button>Редагувати</button></a>
-            <form action="{% url 'delete' shoe.id %}" method="post" style="display:inline;">
-              {% csrf_token %}
-              <button type="submit">Видалити</button>
-            </form>
+            <a href="{% url 'shoe_edit' shoe.id %}"><button>Edit</button></a>
+            <button class="delete-btn">Delete</button>
           </td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="5">Немає записів</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    <p id="totalPrice">Total price: 0 grn</p>
   </div>
 
-  <script src="{% static 'shoes/js/shoes_list.js' %}"></script>
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+
+    function loadShoes() {
+      const query = searchInput.value.trim();
+      const sort = sortSelect.value;
+      const params = new URLSearchParams({ q: query, sort: sort });
+
+      fetch(`/?${params}`, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(r => r.json())
+        .then(data => {
+          const body = document.getElementById("shoesBody");
+          body.innerHTML = "";
+          data.shoes.forEach(s => {
+            body.innerHTML += `
+              <tr data-id="${s.id}">
+                <td>${s.producer}</td>
+                <td>${s.price}</td>
+                <td>${s.size}</td>
+                <td>${s.color}</td>
+                <td>
+                  <a href="/${s.id}/edit/">Edit</a>
+                  <button class="delete-btn">Delete</button>
+                </td>
+              </tr>`;
+          });
+        });
+    }
+
+    searchInput.addEventListener("input", loadShoes);
+    sortSelect.addEventListener("change", loadShoes);
+
+    document.addEventListener("click", e => {
+      if (e.target.classList.contains("delete-btn")) {
+        const id = e.target.closest("tr").dataset.id;
+        fetch(`/${id}/delete/`, {
+          method: "DELETE",
+          headers: { "X-CSRFToken": getCookie("csrftoken") },
+        }).then(() => loadShoes());
+      }
+    });
+
+    function getCookie(name) {
+      const cookieValue = document.cookie.split('; ')
+        .find(row => row.startsWith(name + '='))
+        ?.split('=')[1];
+      return cookieValue;
+    }
+  </script>
 </body>
 </html>

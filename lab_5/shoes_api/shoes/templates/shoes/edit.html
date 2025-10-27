@@ -14,7 +14,7 @@
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">{% if form.instance.pk %}Save{% else %}Add{% endif %}</button>
-      <a href="{% url 'index' %}"><button type="button">Cancel</button></a>
+      <a href="{% url 'index' %}" class="btn"><button>Back</button></a>
     </form>
   </div>
 </body>

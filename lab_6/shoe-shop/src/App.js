@@ -1,18 +1,25 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
-import ShoeList from "./components/ShoeList";
 import Footer from "./components/Footer";
-import "./App.css";
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Header />
       <Navigation />
-      <ShoeList />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+        </Routes>
+      </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

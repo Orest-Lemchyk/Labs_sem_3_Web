@@ -1,0 +1,18 @@
+.catalog-page {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .shoe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  

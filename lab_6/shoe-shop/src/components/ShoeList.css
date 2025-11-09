@@ -8,3 +8,6 @@
     flex-wrap: wrap;
     gap: 20px;
   }
+  .hero {
+    text-align: center;
+  }

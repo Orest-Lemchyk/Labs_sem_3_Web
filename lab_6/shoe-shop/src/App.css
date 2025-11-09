@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+.App {
+  text-align: center;
+}
+/* 
+.header {
+  background-color: #111;
+  color: white;
+  padding: 20px;
+} */
+
+/* .nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 10px;
+  gap: 20px;
+}
+
+.nav li {
+  cursor: pointer;
+  font-weight: bold;
+} */
+
+/* .shoe-list {
+  padding: 30px;
+}
+
+.shoe-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+} */
+
+/* .shoe-card {
+  background-color: white;
+  border-radius: 10px;
+  width: 180px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.shoe-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.price {
+  color: #e63946;
+  font-weight: bold;
+} */
+
+/* .footer {
+  background-color: #111;
+  color: white;
+  padding: 10px;
+  margin-top: 30px;
+} */

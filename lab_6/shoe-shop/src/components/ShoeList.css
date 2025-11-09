@@ -1,0 +1,10 @@
+.shoe-list {
+    padding: 30px;
+  }
+  
+  .shoe-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }

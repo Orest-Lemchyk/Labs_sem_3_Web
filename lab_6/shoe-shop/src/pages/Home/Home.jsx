@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PrimaryButton from "../components/PrimaryButton";
-import ShoeList from "../components/ShoeList";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import ShoeList from "../../components/ShoeList/ShoeList";
 
 function Home() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import ShoeCard from "../components/ShoeCard.js";
-import PrimaryButton from "../components/PrimaryButton.jsx";
+import ShoeCard from "../../components/ShoeCard/ShoeCard.js";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton.jsx";
 import "./Catalog.css";
 
 const shoes = [

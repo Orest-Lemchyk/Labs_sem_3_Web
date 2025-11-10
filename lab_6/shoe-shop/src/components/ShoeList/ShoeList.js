@@ -1,5 +1,5 @@
 import React from "react";
-import ShoeCard from "./ShoeCard";
+import ShoeCard from "../ShoeCard/ShoeCard";
 import "./ShoeList.css";
 
 function ShoeList() {

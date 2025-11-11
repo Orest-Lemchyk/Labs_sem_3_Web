@@ -15,4 +15,25 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
   }
+  .search-bar {
+    margin-bottom: 15px;
+  }
+  
+  .search-bar input {
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filters select {
+    padding: 5px;
+    font-size: 14px;
+  }
   

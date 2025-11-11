@@ -6,20 +6,25 @@ import Navigation from "./components/Navigations/Navigation";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Catalog from "./pages/Catalog/Catalog";
+import ProductPage from "./pages/ProductPage/ProductPage";
+import { ShoesProvider } from "./context/ShoesContext/ShoesContext";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Navigation />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-        </Routes>
-      </main>
-      <Footer />
-    </Router>
+    <ShoesProvider>
+      <Router>
+        <Header />
+        <Navigation />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </ShoesProvider>
   );
 }
 

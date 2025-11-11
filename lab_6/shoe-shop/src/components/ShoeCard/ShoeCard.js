@@ -1,15 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ShoeCard.css";
 
-function ShoeCard({ producer, price, size, color, image }) {
+function ShoeCard({ id, name, price, image }) {
   return (
     <div className="shoe-card">
-      <img src={image} alt={producer} />
-      <h3>{producer}</h3>
-      <p>Size: {size}</p>
-      <p>Color: {color}</p>
-      <p className="price">{price} ₴</p>
-      <button disabled>Add to cart</button>
+      <img src={image} alt={name} />
+      <h4>{name}</h4>
+      <p>${price}</p>
+
+      <Link to={`/product/${id}`} className="view-item-link">
+        <button className="view-item-btn">View Item</button>
+      </Link>
     </div>
   );
 }

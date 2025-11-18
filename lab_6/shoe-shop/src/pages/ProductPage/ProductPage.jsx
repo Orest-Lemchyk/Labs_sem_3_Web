@@ -1,29 +1,31 @@
-import React, { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ShoesContext } from "../../context/ShoesContext/ShoesContext";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getShoeById } from "../../api/shoesApi";
+import Loader from "../../components/Loader/Loader";
 import "./ProductPage.css";
 
 function ProductPage() {
   const { id } = useParams();
-  const { shoes } = useContext(ShoesContext);
+  const [shoe, setShoe] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const shoe = shoes.find((item) => item.id === parseInt(id));
+  useEffect(() => {
+    setLoading(true);
 
-  if (!shoe) return <p>Item not found</p>;
+    getShoeById(id)
+      .then((res) => setShoe(res.data))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) return <Loader />;
+  if (!shoe) return <p>Item not found.</p>;
 
   return (
     <div className="product-page">
-      <img src={shoe.image} alt={shoe.producer} />
-      <div className="product-info">
-        <h2>{shoe.producer}</h2>
-        <p>Price: {shoe.price}₴</p>
-        <p>Size: {shoe.size}</p>
-        <p>Color: {shoe.color}</p>
-        <Link to="/catalog">
-          <PrimaryButton>Back to Catalog</PrimaryButton>
-        </Link>
-      </div>
+      <img src={shoe.image} alt={shoe.name} />
+      <h2>{shoe.name}</h2>
+      <p>{shoe.description}</p>
+      <h3>{shoe.price}$</h3>
     </div>
   );
 }

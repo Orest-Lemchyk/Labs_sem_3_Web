@@ -1,81 +1,89 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getShoes } from "../../api/shoesApi";
+import Loader from "../../components/Loader/Loader";
 import ShoeCard from "../../components/ShoeCard/ShoeCard";
-// import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
-import { ShoesContext } from "../../context/ShoesContext/ShoesContext";
 import "./Catalog.css";
 
 function Catalog() {
-  const { shoes } = useContext(ShoesContext);
+  const [shoes, setShoes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterSize, setFilterSize] = useState("");
-  const [filterColor, setFilterColor] = useState("");
-  const [filterPrice, setFilterPrice] = useState("");
+  // Filters
+  const [type, setType] = useState("");
+  const [color, setColor] = useState("");
+  const [search, setSearch] = useState("");
 
-  const filteredShoes = shoes.filter((shoe) => {
-    const query = searchQuery.trim().toLowerCase();
-    const matchesSearch =
-      shoe.producer.toLowerCase().includes(query) ||
-      shoe.color.toLowerCase().includes(query) ||
-      shoe.size.toString().includes(query);
+  const fetchShoes = () => {
+    setLoading(true);
 
-    const matchesSize = filterSize ? shoe.size === parseInt(filterSize) : true;
-    const matchesColor = filterColor ? shoe.color === filterColor : true;
-    const matchesPrice =
-      filterPrice === "low"
-        ? shoe.price < 3000
-        : filterPrice === "medium"
-        ? shoe.price >= 3000 && shoe.price <= 10000
-        : filterPrice === "high"
-        ? shoe.price > 10000
-        : true;
+    getShoes({
+      type: type || undefined,
+      color: color || undefined,
+      search: search || undefined
+    })
+      .then((res) => {
+        setShoes(res.data);
+      })
+      .finally(() => setLoading(false));
+  };
 
-    return matchesSearch && matchesSize && matchesColor && matchesPrice;
-  });
+  useEffect(() => {
+    fetchShoes();
+  }, [type, color]);
+
+  const handleSearch = () => {
+    fetchShoes();
+  };
 
   return (
-    <div className="catalog-page">
+    <div className="catalog">
       <h2>Catalog</h2>
 
-      <div className="search-bar">
+      {/* Filters */}
+      <div className="filters">
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="">All types</option>
+          <option value="sneakers">Sneakers</option>
+          <option value="running">Running</option>
+          <option value="training">Training</option>
+          <option value="casual">Casual</option>
+          <option value="walking">Walking</option>
+          <option value="basketball">Basketball</option>
+          <option value="skate">Skate</option>
+          <option value="luxury">Luxury</option>
+        </select>
+
+        <select value={color} onChange={(e) => setColor(e.target.value)}>
+          <option value="">All colors</option>
+          <option value="white">White</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="red">Red</option>
+          <option value="gray">Gray</option>
+        </select>
+
         <input
           type="text"
-          placeholder="Search shoes..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by name or producer..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
+
+        <button onClick={handleSearch}>Search</button>
       </div>
 
-      <div className="filters">
-        <select value={filterSize} onChange={(e) => setFilterSize(e.target.value)}>
-          <option value="">All Sizes</option>
-          {[40, 41, 42, 43, 44, 45].map((size) => (
-            <option key={size} value={size}>{size}</option>
+      {loading ? (
+        <Loader />
+      ) : shoes.length > 0 ? (
+        <div className="shoe-grid">
+          {shoes.map((shoe) => (
+            <ShoeCard key={shoe.id} {...shoe} />
           ))}
-        </select>
-
-        <select value={filterColor} onChange={(e) => setFilterColor(e.target.value)}>
-          <option value="">All Colors</option>
-          {["black","white","red","blue","green","gray"].map((color) => (
-            <option key={color} value={color}>{color}</option>
-          ))}
-        </select>
-
-        <select value={filterPrice} onChange={(e) => setFilterPrice(e.target.value)}>
-          <option value="">All Prices</option>
-          <option value="low">Below 3000</option>
-          <option value="medium">3000 - 10000</option>
-          <option value="high">Above 10000</option>
-        </select>
-      </div>
-
-      <div className="shoe-grid">
-        {filteredShoes.length > 0 ? (
-          filteredShoes.map((shoe) => <ShoeCard key={shoe.id} {...shoe} />)
-        ) : (
-          <p>No shoes match your search/filter.</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <p>No shoes found.</p>
+      )}
     </div>
   );
 }

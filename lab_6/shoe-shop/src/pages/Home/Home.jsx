@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import ShoeCard from "../../components/ShoeCard/ShoeCard";
 import { ShoesContext } from "../../context/ShoesContext/ShoesContext";
+import Loader from "../../components/Loader/Loader";
 import "./Home.css";
 
 function Home() {
-  const { shoes } = useContext(ShoesContext);
+  const { shoes, loading } = useContext(ShoesContext);
   const [visibleCount, setVisibleCount] = useState(5);
+
+  if (loading) return <Loader />;
+
   const visibleShoes = shoes.slice(0, visibleCount);
 
   const handleViewMore = () => {
@@ -25,6 +29,7 @@ function Home() {
 
       <section className="popular">
         <h3>Popular Shoes</h3>
+
         <div className="shoe-grid">
           {visibleShoes.map((shoe) => (
             <ShoeCard key={shoe.id} id={shoe.id} {...shoe} />

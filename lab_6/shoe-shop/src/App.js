@@ -8,7 +8,7 @@ import Home from "./pages/Home/Home";
 import Catalog from "./pages/Catalog/Catalog";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import { ShoesProvider } from "./context/ShoesContext/ShoesContext";
-
+// json-server --watch db.json --port 3001
 function App() {
   return (
     <ShoesProvider>

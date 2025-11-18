@@ -1,0 +1,181 @@
+{
+    "shoes": [
+      {
+        "id": 1,
+        "producer": "Nike",
+        "name": "Nike Air Max",
+        "price": 2500,
+        "size": 42,
+        "color": "black",
+        "type": "sneakers",
+        "image": "https://frenchcrown.com/cdn/shop/files/FT-220_2.jpg?v=1718959986&width=1200",
+        "description": "Comfortable and stylish everyday sneakers."
+      },
+      {
+        "id": 2,
+        "producer": "Adidas",
+        "name": "Adidas Ultraboost",
+        "price": 2200,
+        "size": 41,
+        "color": "white",
+        "type": "running",
+        "image": "https://www.topoathletic.com/sca-product-images/M069.Blue-Orange_00.jpg?resizeid=12&resizeh=1586&resizew=1586",
+        "description": "Perfect choice for running and active lifestyle."
+      },
+      {
+        "id": 3,
+        "producer": "Puma",
+        "name": "Puma Runner",
+        "price": 1800,
+        "size": 43,
+        "color": "green",
+        "type": "running",
+        "image": "https://cdn.fleetfeet.com/productTile/products/1162030-ALF_1-copy.jpg",
+        "description": "Lightweight and durable shoes for daily runs."
+      },
+      {
+        "id": 4,
+        "producer": "Reebok",
+        "name": "Reebok Classic",
+        "price": 2000,
+        "size": 44,
+        "color": "blue",
+        "type": "casual",
+        "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/378301/21/sv01/fnd/PHL/fmt/png/X-Cell-Action-Running-Shoes",
+        "description": "Stylish sneakers for everyday wear."
+      },
+      {
+        "id": 5,
+        "producer": "Under Armour",
+        "name": "UA Charged",
+        "price": 2700,
+        "size": 45,
+        "color": "red",
+        "type": "training",
+        "image": "https://m.media-amazon.com/images/I/71oqduXWKSL._AC_SY695_.jpg",
+        "description": "High-performance shoes for training and sports."
+      },
+      {
+        "id": 6,
+        "producer": "New Balance",
+        "name": "New Balance Fresh Foam",
+        "price": 2300,
+        "size": 42,
+        "color": "black",
+        "type": "running",
+        "image": "https://cdn.fleetfeet.com/productTile/products/1162030-ALF_1-copy.jpg",
+        "description": "Comfortable running shoes with excellent cushioning."
+      },
+      {
+        "id": 7,
+        "producer": "Converse",
+        "name": "Converse All Star",
+        "price": 1600,
+        "size": 40,
+        "color": "white",
+        "type": "casual",
+        "image": "https://www.topoathletic.com/sca-product-images/M069.Blue-Orange_00.jpg?resizeid=12&resizeh=1586&resizew=1586",
+        "description": "Iconic casual shoes suitable for everyday wear."
+      },
+      {
+        "id": 8,
+        "producer": "Vans",
+        "name": "Vans Old Skool",
+        "price": 1900,
+        "size": 41,
+        "color": "gray",
+        "type": "skate",
+        "image": "https://cdn.fleetfeet.com/productTile/products/1162030-ALF_1-copy.jpg",
+        "description": "Classic skate shoes with a durable design."
+      },
+      {
+        "id": 9,
+        "producer": "Asics",
+        "name": "Asics Gel-Kayano",
+        "price": 2100,
+        "size": 43,
+        "color": "blue",
+        "type": "running",
+        "image": "https://www.topoathletic.com/sca-product-images/M069.Blue-Orange_00.jpg?resizeid=12&resizeh=1586&resizew=1586",
+        "description": "Premium running shoes with excellent support."
+      },
+      {
+        "id": 10,
+        "producer": "Fila",
+        "name": "Fila Disruptor",
+        "price": 1700,
+        "size": 42,
+        "color": "red",
+        "type": "sneakers",
+        "image": "https://frenchcrown.com/cdn/shop/files/FT-220_2.jpg?v=1718959986&width=1200",
+        "description": "Chunky sneakers with retro style and comfort."
+      },
+      {
+        "id": 11,
+        "producer": "Skechers",
+        "name": "Skechers Go Walk",
+        "price": 2400,
+        "size": 44,
+        "color": "black",
+        "type": "walking",
+        "image": "https://m.media-amazon.com/images/I/71oqduXWKSL._AC_SY695_.jpg",
+        "description": "Lightweight walking shoes for all-day comfort."
+      },
+      {
+        "id": 12,
+        "producer": "Mizuno",
+        "name": "Mizuno Wave Rider",
+        "price": 2600,
+        "size": 45,
+        "color": "green",
+        "type": "running",
+        "image": "https://m.media-amazon.com/images/I/71oqduXWKSL._AC_SY695_.jpg",
+        "description": "High-quality running shoes with smooth ride."
+      },
+      {
+        "id": 13,
+        "producer": "Brooks",
+        "name": "Brooks Ghost",
+        "price": 2500,
+        "size": 42,
+        "color": "white",
+        "type": "running",
+        "image": "https://www.topoathletic.com/sca-product-images/M069.Blue-Orange_00.jpg?resizeid=12&resizeh=1586&resizew=1586",
+        "description": "Reliable running shoes with excellent cushioning."
+      },
+      {
+        "id": 14,
+        "producer": "Jordan",
+        "name": "Jordan Air Retro",
+        "price": 3200,
+        "size": 43,
+        "color": "red",
+        "type": "basketball",
+        "image": "https://frenchcrown.com/cdn/shop/files/FT-220_2.jpg?v=1718959986&width=1200",
+        "description": "High-top basketball shoes with iconic design."
+      },
+      {
+        "id": 15,
+        "producer": "Balenciaga",
+        "name": "Balenciaga Triple S",
+        "price": 12000,
+        "size": 44,
+        "color": "black",
+        "type": "luxury",
+        "image": "https://www.topoathletic.com/sca-product-images/M069.Blue-Orange_00.jpg?resizeid=12&resizeh=1586&resizew=1586",
+        "description": "High-fashion luxury sneakers with bold design."
+      },
+      {
+        "id": 16,
+        "producer": "Gucci",
+        "name": "Gucci Rhyton",
+        "price": 14000,
+        "size": 45,
+        "color": "white",
+        "type": "luxury",
+        "image": "https://frenchcrown.com/cdn/shop/files/FT-220_2.jpg?v=1718959986&width=1200",
+        "description": "Luxury sneakers with premium materials and style."
+      }
+    ]
+  }
+  

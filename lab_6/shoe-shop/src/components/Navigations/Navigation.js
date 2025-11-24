@@ -9,6 +9,7 @@ function Navigation() {
       <ul>
       <li> <Link to="/">Home</Link></li>
       <li> <Link to="/catalog">Catalog</Link></li>
+      <li><Link to="/cart">Cart</Link></li>
         <li>About</li>
         <li>Contact</li>
       </ul>

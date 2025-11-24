@@ -26,6 +26,7 @@
   cursor: pointer;
   margin-top: 10px;
   transition: background 0.3s ease;
+  margin: 10px;
 }
 
 .view-item-btn:hover {

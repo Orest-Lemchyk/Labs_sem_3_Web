@@ -28,8 +28,11 @@ function Catalog() {
   };
 
   useEffect(() => {
-    fetchShoes();
-  }, [type, color]);
+    setLoading(true);
+    getShoes({ type, color, search })
+      .then(res => setShoes(res.data))
+      .finally(() => setLoading(false));
+  }, [type, color, search]);
 
   const handleSearch = () => {
     fetchShoes();

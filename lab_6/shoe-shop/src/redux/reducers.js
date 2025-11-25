@@ -5,43 +5,69 @@ import {
   DECREASE_QTY
 } from "./actions";
 
+// ----- INITIAL STATE -----
+const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
 const initialState = {
-  cart: []
+  cart: savedCart,
 };
 
-export const cartReducer = (state = initialState, action) => {
+// ----- REDUCER -----
+export default function rootReducer(state = initialState, action) {
+  let updatedCart;
+
   switch (action.type) {
     case ADD_TO_CART: {
-      const itemIndex = state.cart.findIndex(i => i.id === action.payload.id);
-      if (itemIndex >= 0) {
-        // Якщо вже є у кошику, збільшуємо quantity
-        const newCart = [...state.cart];
-        newCart[itemIndex].quantity += 1;
-        return { ...state, cart: newCart };
+      const exists = state.cart.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.color === action.payload.color
+      );
+
+      if (exists) {
+        updatedCart = state.cart.map((item) =>
+          item.id === action.payload.id && item.color === action.payload.color
+            ? { ...item, quantity: item.quantity + action.payload.quantity }
+            : item
+        );
+      } else {
+        updatedCart = [...state.cart, action.payload];
       }
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return { ...state, cart: updatedCart };
     }
 
-    case REMOVE_FROM_CART:
-      return { ...state, cart: state.cart.filter(i => i.id !== action.payload) };
+    case REMOVE_FROM_CART: {
+      updatedCart = state.cart.filter(
+        (item) =>
+          !(item.id === action.payload.id && item.color === action.payload.color)
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return { ...state, cart: updatedCart };
+    }
 
-    case INCREASE_QTY:
-      return {
-        ...state,
-        cart: state.cart.map(i =>
-          i.id === action.payload ? { ...i, quantity: i.quantity + 1 } : i
-        )
-      };
+    case INCREASE_QTY: {
+      updatedCart = state.cart.map((item) =>
+        item.id === action.payload.id && item.color === action.payload.color
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return { ...state, cart: updatedCart };
+    }
 
-    case DECREASE_QTY:
-      return {
-        ...state,
-        cart: state.cart.map(i =>
-          i.id === action.payload && i.quantity > 1 ? { ...i, quantity: i.quantity - 1 } : i
-        )
-      };
+    case DECREASE_QTY: {
+      updatedCart = state.cart.map((item) =>
+        item.id === action.payload.id && item.color === action.payload.color
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return { ...state, cart: updatedCart };
+    }
 
     default:
       return state;
   }
-};
+}

@@ -1,52 +1,108 @@
 .cart-page {
-    padding: 20px;
-  }
-  
-  .cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .cart-item {
-    display: flex;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  .cart-item img {
-    width: 120px;
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .cart-item-info h4 {
-    margin: 0;
-  }
-  
-  .cart-item-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .cart-item-controls button {
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    border: none;
-    background-color: #6c63ff;
-    color: white;
-  }
-  
-  .cart-item-controls button:hover {
-    background-color: #574de0;
-  }
-  
-  .qty-btn.disabled {
+  padding: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.item-info p {
+  margin: 5px 0;
+}
+
+.cart-color-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.cart-color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.cart-color-dot:hover {
+  border-color: #999;
+}
+
+.cart-color-dot.selected {
+  border-color: #6c63ff; /* кольце для поточного кольору */
+  box-sizing: border-box;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.qty-controls button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #6c63ff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qty-controls button:hover {
+  background-color: #574de0;
+}
+
+/* заблокована кнопка мінус */
+.qty-controls button.disabled {
   background: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.remove-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: #e03e3e;
+}
+
+.total {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }

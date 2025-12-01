@@ -5,29 +5,24 @@ import {
   DECREASE_QTY
 } from "./actions";
 
-// ----- INITIAL STATE -----
 const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const initialState = {
   cart: savedCart,
 };
 
-// ----- REDUCER -----
 export default function rootReducer(state = initialState, action) {
   let updatedCart;
 
   switch (action.type) {
     case ADD_TO_CART: {
-      const exists = state.cart.find(
-        (item) =>
-          item.id === action.payload.id &&
-          item.color === action.payload.color
-      );
+      const { id, color, quantity } = action.payload;
+      const exists = state.cart.find(item => item.id === id && item.color === color);
 
       if (exists) {
-        updatedCart = state.cart.map((item) =>
-          item.id === action.payload.id && item.color === action.payload.color
-            ? { ...item, quantity: item.quantity + action.payload.quantity }
+        updatedCart = state.cart.map(item =>
+          item.id === id && item.color === color
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
@@ -39,17 +34,16 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case REMOVE_FROM_CART: {
-      updatedCart = state.cart.filter(
-        (item) =>
-          !(item.id === action.payload.id && item.color === action.payload.color)
-      );
+      const { id, color } = action.payload;
+      updatedCart = state.cart.filter(item => !(item.id === id && item.color === color));
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return { ...state, cart: updatedCart };
     }
 
     case INCREASE_QTY: {
-      updatedCart = state.cart.map((item) =>
-        item.id === action.payload.id && item.color === action.payload.color
+      const { id, color } = action.payload;
+      updatedCart = state.cart.map(item =>
+        item.id === id && item.color === color
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
@@ -58,11 +52,14 @@ export default function rootReducer(state = initialState, action) {
     }
 
     case DECREASE_QTY: {
-      updatedCart = state.cart.map((item) =>
-        item.id === action.payload.id && item.color === action.payload.color
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item
-      );
+      const { id, color } = action.payload;
+      updatedCart = state.cart
+        .map(item =>
+          item.id === id && item.color === color
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter(item => item.quantity > 0);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return { ...state, cart: updatedCart };
     }

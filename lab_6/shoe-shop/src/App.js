@@ -13,7 +13,7 @@ import CartPage from "./pages/CartPage/CartPage";
 
 import store from "./redux/store";
 import { ShoesProvider } from "./context/ShoesContext/ShoesContext";
-
+// json-server --watch db.json --port 3001
 function App() {
   return (
     <Provider store={store}>

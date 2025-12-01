@@ -29,10 +29,6 @@ function ShoeCard({ id, name, producer, price, image }) {
       <Link to={`/product/${id}`} className="view-item-link">
         <button className="view-item-btn">View Item</button>
       </Link>
-
-      <button onClick={handleAddToCart} className="view-item-btn">
-        Add to Cart
-      </button>
     </div>
   );
 }

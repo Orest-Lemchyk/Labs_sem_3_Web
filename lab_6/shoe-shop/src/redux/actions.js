@@ -1,36 +1,26 @@
+// Типи дій
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const INCREASE_QTY = "INCREASE_QTY";
 export const DECREASE_QTY = "DECREASE_QTY";
 
-export const addToCart = (item) => (dispatch, getState) => {
-  const { cart } = getState();
-  const existingItemIndex = cart.findIndex(
-    (i) => i.id === item.id && i.color === item.color
-  );
+// Дії
+export const addToCart = (item) => ({
+  type: ADD_TO_CART,
+  payload: item,
+});
 
-  if (existingItemIndex >= 0) {
-    dispatch({
-      type: "INCREASE_QTY",
-      payload: { id: item.id, color: item.color, qty: item.quantity },
-    });
-  } else {
-    dispatch({ type: "ADD_TO_CART", payload: item });
-  }
-};
-
-
-export const removeFromCart = (id) => ({
+export const removeFromCart = ({ id, color }) => ({
   type: REMOVE_FROM_CART,
-  payload: id
+  payload: { id, color },
 });
 
-export const increaseQty = (id) => ({
+export const increaseQty = ({ id, color }) => ({
   type: INCREASE_QTY,
-  payload: id
+  payload: { id, color },
 });
 
-export const decreaseQty = (id) => ({
+export const decreaseQty = ({ id, color }) => ({
   type: DECREASE_QTY,
-  payload: id
+  payload: { id, color },
 });

@@ -10,10 +10,12 @@ import Home from "./pages/Home/Home";
 import Catalog from "./pages/Catalog/Catalog";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import CartPage from "./pages/CartPage/CartPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
 
 import store from "./redux/store";
 import { ShoesProvider } from "./context/ShoesContext/ShoesContext";
-// json-server --watch db.json --port 3001
+
 function App() {
   return (
     <Provider store={store}>
@@ -27,6 +29,8 @@ function App() {
               <Route path="/catalog" element={<Catalog />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/success" element={<SuccessPage />} />
             </Routes>
           </main>
           <Footer />

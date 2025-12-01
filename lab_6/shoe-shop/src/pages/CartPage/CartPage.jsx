@@ -21,14 +21,11 @@ function CartPage() {
     const exists = cart.find(i => i.id === item.id && i.color === newColor);
 
     if (exists) {
-      // якщо айтем з таким кольором вже є, просто збільшуємо його на 1
       dispatch(addToCart({ ...item, color: newColor, quantity: 1 }));
     } else {
-      // створюємо новий айтем з quantity = 1
       dispatch(addToCart({ ...item, color: newColor, quantity: 1, availableColors: item.availableColors }));
     }
 
-    // зменшуємо кількість старого айтема на 1 або видаляємо, якщо була 1
     if (item.quantity > 1) {
       dispatch(decreaseQty({ id: item.id, color: item.color }));
     } else {
@@ -69,7 +66,7 @@ function CartPage() {
 
               {/* Кількість */}
               <div className="qty-controls">
-              <button
+                <button
                   onClick={() => dispatch(decreaseQty({ id: item.id, color: item.color }))}
                   className={item.quantity === 1 ? "disabled" : ""}
                   disabled={item.quantity === 1}
@@ -96,6 +93,12 @@ function CartPage() {
       </div>
 
       <h3 className="total">Total: {total}₴</h3>
+
+      {cart.length > 0 && (
+        <Link to="/checkout" className="checkout-btn">
+          Proceed to Checkout
+        </Link>
+      )}
     </div>
   );
 }

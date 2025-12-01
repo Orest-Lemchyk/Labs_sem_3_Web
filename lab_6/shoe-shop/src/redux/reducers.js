@@ -2,7 +2,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   INCREASE_QTY,
-  DECREASE_QTY
+  DECREASE_QTY,
+  CLEAR_CART
 } from "./actions";
 
 const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -64,6 +65,11 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, cart: updatedCart };
     }
 
+    case CLEAR_CART: {
+      localStorage.setItem("cart", JSON.stringify([]));
+      return { ...state, cart: [] };
+    }
+    
     default:
       return state;
   }

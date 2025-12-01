@@ -1,0 +1,43 @@
+.success-page {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+}
+
+.success-page h2 {
+  color: #6c63ff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.success-page p {
+  font-size: 1.1rem;
+  color: #333333;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.success-page .back-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6c63ff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.success-page .back-btn:hover {
+  background-color: #574de0;
+  transform: translateY(-2px);
+}
+
+.success-page .back-btn:active {
+  transform: translateY(0);
+}

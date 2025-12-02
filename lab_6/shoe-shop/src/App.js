@@ -12,7 +12,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
-
+// json-server --watch db.json --port 3001
 import store from "./redux/store";
 import { ShoesProvider } from "./context/ShoesContext/ShoesContext";
 

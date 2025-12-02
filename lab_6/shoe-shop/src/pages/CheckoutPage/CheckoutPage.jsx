@@ -5,7 +5,6 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 import "./CheckoutPage.css";
 
-// Yup валідація
 const CheckoutSchema = Yup.object().shape({
   firstName: Yup.string()
     .max(15, "First name must be 15 characters or less")
@@ -15,8 +14,12 @@ const CheckoutSchema = Yup.object().shape({
     .max(20, "Last name must be 20 characters or less")
     .matches(/^[A-Za-z]+$/, "Last name can contain only letters")
     .required("Last name is required"),
-  email: Yup.string()
+    email: Yup.string()
     .email("Invalid email format")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,
+      "Domain must be at least 2 characters"
+    )
     .required("Email is required"),
   phone: Yup.string()
     .matches(/^\d{10,14}$/, "Phone number must contain only 10-14 digits")
